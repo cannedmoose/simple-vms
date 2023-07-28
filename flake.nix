@@ -66,7 +66,7 @@
             let
               cleanupScript = name: persistState: pkgs.writeScript "cleanup" ''
                 #!${pkgs.bash}/bin/bash
-                ${if persistState then "" else "rm /var/lib/simple-vms/${name}/nixos.qcow2 || true"};
+                ${if persistState then "echo Done" else "rm /var/lib/simple-vms/${name}/nixos.qcow2 || true"};
               '';
               mkService = name: cfg: {
                 enable = cfg.autoStart;
